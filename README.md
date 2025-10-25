@@ -1,0 +1,3 @@
+# Processamento de Imagens em Lote para Redimensionamento e Inserção automática no PDF para Impressão
+
+Em desenvolvimento...
