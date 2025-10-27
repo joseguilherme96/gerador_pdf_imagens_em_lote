@@ -44,13 +44,4 @@ def mock_imagens_convertidas(tmp_images):
 
     yield imagens_convertidas
 
-@fixture
-def criar_lotes_imagens():
-
-    yield True
-
-    load_dotenv()
-
-    Diretorio.limpar_diretorio(os.getenv('IMAGE_PATH_PROCESSED'))
-
 
