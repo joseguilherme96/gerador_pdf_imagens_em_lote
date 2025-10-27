@@ -58,6 +58,8 @@ class Pdf:
                         preserveAspectRatio=True
                     )
 
+                    logging.info(paths_images[x])
+
                 if x + 1 < len(paths_images):
 
                     c.drawImage(
@@ -68,6 +70,9 @@ class Pdf:
                         height=300, 
                         preserveAspectRatio=True
                     )
+
+                    logging.info(paths_images[x + 1])
+
                 if x + 2 < len(paths_images):
 
                     c.drawImage(
@@ -78,6 +83,9 @@ class Pdf:
                         height=300, 
                         preserveAspectRatio=True
                     )
+
+                    logging.info(paths_images[x + 2])
+
                 if x + 3 < len(paths_images):
 
                     c.drawImage(
@@ -88,6 +96,8 @@ class Pdf:
                         height=300, 
                         preserveAspectRatio=True
                     )
+
+                    logging.info(paths_images[x + 3])
 
                 c.showPage()
 

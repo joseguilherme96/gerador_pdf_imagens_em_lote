@@ -46,7 +46,7 @@ class Imagem:
                 imagem = self.imagem.open(str(path_image))
                 nova_imagem = imagem.resize((Conversao.convert_mm_to_pixel(int(self.folha_imagem.comprimento_maximo_imagem_na_folha)), Conversao.convert_mm_to_pixel(int(self.folha_imagem.largura_maxima_imagem_na_folha))))
                 
-                novo_caminho_imagem = nova_pasta_lote / f"ss_{x}.jpg"
+                novo_caminho_imagem = nova_pasta_lote / f"{path_image.name}_{x}.jpg"
                 nova_imagem.save(novo_caminho_imagem)
 
                 nova_imagem = {
