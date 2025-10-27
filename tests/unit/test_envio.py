@@ -31,8 +31,7 @@ def test_a_quantidade_de_imagens_enviadas_pelo_cliente_deve_ser_igual_a_quantida
     quantidade_imagens_enviadas = get_quantidade_imagens(os.getenv("IMAGE_PATH_RECEIVED"))
     quantidade_imagens_processo = get_quantidade_imagens(os.getenv("IMAGE_PATH_PENDING"))
     
-    repetidas = 27
-    assert quantidade_imagens_processo == (quantidade_imagens_enviadas - repetidas)
+    assert quantidade_imagens_processo == quantidade_imagens_enviadas
 
 def test_a_quantidade_de_imagens_enviadas_pelo_cliente_deve_ser_igual_a_quantidade_imagens_processadas(redimensionar_imagens_inserir_no_pdf,caplog):
 
@@ -43,6 +42,4 @@ def test_a_quantidade_de_imagens_enviadas_pelo_cliente_deve_ser_igual_a_quantida
     quantidade_imagens_enviadas = get_quantidade_imagens(os.getenv("IMAGE_PATH_RECEIVED"))
     quantidade_imagens_processadas = get_quantidade_imagens(os.getenv("IMAGE_PATH_PROCESSED"))
 
-    repetidas = 27
-
-    assert quantidade_imagens_processadas == (quantidade_imagens_enviadas - repetidas)
+    assert quantidade_imagens_processadas == quantidade_imagens_enviadas

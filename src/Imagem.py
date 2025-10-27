@@ -3,6 +3,7 @@ from pathlib import Path
 from src.Conversao import Conversao
 import os
 from dotenv import load_dotenv
+import logging
 
 class MockImagem:
 
@@ -22,6 +23,8 @@ class Imagem:
         return True
 
     def redimensionar_imagem(self):
+
+        logging.info("Inicio de redimensionando de imagens .........")
 
         redimensionamento = []
 
@@ -59,5 +62,7 @@ class Imagem:
                 lote_imagens.append(nova_imagem)
 
             redimensionamento.append(lote_imagens)
+
+        logging.info("Fim do redimensionando de imagens.........")
 
         return redimensionamento  

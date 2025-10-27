@@ -17,6 +17,8 @@ class Pdf:
 
     def criar_pdf_com_imagens(self):
 
+        logging.info("Inicio de criação de pdfs .........")
+
         load_dotenv()
 
         BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +29,9 @@ class Pdf:
 
         pdfs_por_lote = []
 
-        for path_lote_images in pastas_lotes_imagens:
+        for (x,path_lote_images) in enumerate(pastas_lotes_imagens):
+
+            logging.info(f"Lote de imagens {x} .........")
 
             paths_images = [x for x in path_lote_images.iterdir()]
 
@@ -49,6 +53,7 @@ class Pdf:
 
                 if x < len(paths_images):
 
+                    logging.info("Inserindo imagem no pdf.........")
                     c.drawImage(
                         paths_images[x],    
                         x=0,
@@ -62,6 +67,7 @@ class Pdf:
 
                 if x + 1 < len(paths_images):
 
+                    logging.info("Inserindo imagem no pdf.........")
                     c.drawImage(
                         paths_images[x + 1],    
                         x=250,
@@ -75,6 +81,7 @@ class Pdf:
 
                 if x + 2 < len(paths_images):
 
+                    logging.info("Inserindo imagem no pdf.........")
                     c.drawImage(
                         paths_images[x + 2],    
                         x=0,
@@ -88,6 +95,7 @@ class Pdf:
 
                 if x + 3 < len(paths_images):
 
+                    logging.info("Inserindo imagem no pdf.........")
                     c.drawImage(
                         paths_images[x + 3],    
                         x=250,
@@ -104,5 +112,8 @@ class Pdf:
             c.save()
             pdfs_por_lote.append(pdf)
             logging.info(pdf)
+            logging.info(f"Gerado pdf {pdf.name}")
+
+        logging.info("Fim de criação de pdfs .........")
 
         return pdfs_por_lote
