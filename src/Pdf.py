@@ -21,6 +21,7 @@ class Pdf:
 
         BASE_DIR = Path(__file__).resolve().parent.parent
         caminhos_imagens_processadas = BASE_DIR / os.getenv('IMAGE_PATH_PROCESSED')
+        caminhos_imagens_processadas.mkdir(exist_ok=True)
 
         pastas_lotes_imagens = [x for x in caminhos_imagens_processadas.iterdir()]
 

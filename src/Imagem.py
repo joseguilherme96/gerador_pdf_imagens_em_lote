@@ -28,6 +28,8 @@ class Imagem:
         BASE_DIR = Path(__file__).resolve().parent.parent
 
         caminhos_lotes_a_processar = BASE_DIR / os.getenv('IMAGE_PATH_PENDING')
+        caminhos_lotes_a_processar.mkdir(exist_ok=True)
+        
         paths_lotes = [x for x in caminhos_lotes_a_processar.iterdir()]
         
         for (x,path_lote) in enumerate(paths_lotes):
