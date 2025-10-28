@@ -42,6 +42,7 @@ class Pdf:
             if pdf.exists():
 
                 pdf.unlink()
+                paths_images.pop()
 
             c = self.pdf.Canvas(caminho_pdf, pagesize=(595.27, 841.89))
         
