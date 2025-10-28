@@ -24,9 +24,28 @@ Ative o ambiente virtual. E instale as dependências do projeto com o seguinte c
 
 ```
 
+# Arquivo de ambiente `.env`
+
+Renomeie o arquivo de ambiente de `.env_example` para `.env`
+
 # Execução do RPA
 
 Salve suas imagens em lote(pastas) dentro da pasta `process`.
+
+```sh
+
+gerador_pdf_imagens_em_lote/
+│
+├── resize/ 
+     ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf)
+     │   ├── lote0/
+     │   │   ├── imagem_exemplo.png
+     │   │   └── imagem_exemplo - Copia.png
+     │   └── lote1/
+     │       ├── imagem_exemplo.png
+     │       └── imagem_exemplo - Copia.png
+
+```
 
 Na raiz do projeto execute :
 
