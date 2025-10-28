@@ -62,6 +62,28 @@ O script começará a processar as imagens fazendo o redimensionamento e inserç
 # PDF Gerado
 [![PDF Gerado](assets/folha_a4_com_imagens.png "PDF Gerado")](assets/folha_a4_com_imagens.png)
 
+# Testes automatizados
+
+Para execução dos testes automatizados execute o seguinte comando na raiz do projeto :
+
+```sh
+
+    pytest
+
+```
+
+[![Execução do Pytest](assets/pytest.png "Execução do Pytest")](assets/pytest.png)
+
+Para execução com logs, execute o seguinte comando :
+
+```sh
+
+    pytest --log-cli-level=INFO
+
+```
+
+[![Execução do Pytest com Logs](assets/pytest_with_logs.png "Execução do Pytest com Logs")](assets/pytest_with_logs.png)
+
 # Principais conceitos aplicados
 
 - Entendimento do problema e desenvolvimento de uma solução simples
