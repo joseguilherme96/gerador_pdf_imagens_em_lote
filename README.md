@@ -8,13 +8,13 @@ Está automação precisou ser desenvolvida para atender a necessidade de um cli
 
 # Testes
 
-Durante o densenvolvimento do RPA foram realizados diversos testes desde teste de simulação(mocks), passando por testes unitários até testes de integração que cobre todo o fluxo para geração dos pdfs da imagens adicionada para processamento em lote.
+Todo densenvolvimento do RPA foi realizado orientado a testes(TDD - Test-Driven Development), foi realizado diversos testes desde teste de simulação(mocks), passando por testes unitários até testes de integração que cobre todo o fluxo para geração dos pdfs da imagens adicionada para processamento em lote.
 
 [![Testes](assets/testes.png "Testes")](assets/testes.png)
 
 # Instale as dependências
 
-Crie uma ambiente virtual dentro na raiz do projeto adicionando a pasta `.venv`
+Crie uma ambiente virtual na raiz do projeto adicionando a pasta `.venv`
 
 Ative o ambiente virtual. E instale as dependências do projeto com o seguinte comando :
 
@@ -46,7 +46,7 @@ O script começará a processar as imagens fazendo o redimensionamento e inserç
 # Principais conceitos aplicados
 
 - Entendimento do problema e desenvolvimento de uma solução simples
-- Desenvolvimento baseado em TDD(Teste Driven Development)
+- Desenvolvimento baseado em TDD(Test-Driven Development)
 - Desenvolvimento baseado em um fluxo simples criado para o RPA, Recebimento das imagens enviadas pelo cliente->Processamento(Redimensionamento e Inserção no Pdf)->Geração de PDFs
 - Implementação de logs
 - Trabalhando com manipulação de arquivos
