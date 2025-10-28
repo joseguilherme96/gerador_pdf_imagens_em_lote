@@ -38,10 +38,10 @@ Na raiz do projeto execute :
 
 O script começará a processar as imagens fazendo o redimensionamento e inserção automática em folha A4 para impressão.
 
-[![Processamento das imagens e geração de pdfs](assets/processamento_imagens_pdf.png "Processamento das imagens e geração de pdfs")](assets/processamento_imagens_pdf.png)
+[![Processamento RPA](assets/processamento_imagens_pdf.png "Processamento RPA")](assets/processamento_imagens_pdf.png)
 
 # PDF Gerado
-[![Folha com as imagens inseridas](assets/folha_a4_com_imagens.png "Folha com as imagens inseridas")](assets/folha_a4_com_imagens.png)
+[![PDF Gerado](assets/folha_a4_com_imagens.png "PDF Gerado")](assets/folha_a4_com_imagens.png)
 
 # Principais conceitos aplicados
 
