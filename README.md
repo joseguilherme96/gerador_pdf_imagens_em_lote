@@ -24,26 +24,39 @@ Ative o ambiente virtual. E instale as dependências do projeto com o seguinte c
 
 ```
 
-# Arquivo de ambiente `.env`
-
-Renomeie o arquivo de ambiente de `.env_example` para `.env`
-
 # Execução do RPA
 
-Salve suas imagens em lote(pastas) dentro da pasta `process`.
+Crie uma pasta chamada `production/process`e salve suas imagens em lote(pastas) dentro da pasta `production/process` confome hierarquia abaixo.
 
 ```sh
 
 gerador_pdf_imagens_em_lote/
 │
 ├── resize/ 
-     ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf)
-     │   ├── lote0/
-     │   │   ├── imagem_exemplo.png
-     │   │   └── imagem_exemplo - Copia.png
-     │   └── lote1/
-     │       ├── imagem_exemplo.png
-     │       └── imagem_exemplo - Copia.png
+    ├── production
+        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf)
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf) que podem ser organizadas.
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── processed/              # Onde ficam os resultados finais (PDFs e imagens geradas)
+        │   ├── lote0/
+        │   │   ├── lote0.pdf       # PDF final gerado com as imagens do lote
+        │   │   ├── imagem_exemplo.jpg        # Capturas de tela ou imagens intermediárias de verificação
+        │   │   └── imagem_exemplo - Copia.jpg
+        │   └── lote1/
+        │       ├── lote1.pdf
+        │       ├── imagem_exemplo.jpg
+        │       └── imagem_exemplo - Copia.jpg
 
 ```
 
@@ -51,7 +64,7 @@ Na raiz do projeto execute :
 
 ```sh
 
-    python processar.py
+    set ENV_FOR_DYNACONF=production && python processar.py
 
 ```
 
@@ -84,6 +97,118 @@ Para execução com logs, execute o seguinte comando :
 
 [![Execução do Pytest com Logs](assets/pytest_with_logs.png "Execução do Pytest com Logs")](assets/pytest_with_logs.png)
 
+# Fluxo e Ambientes de desenvolvimento x teste x produção
+
+Os ambientes estão sendo gerenciados por Dynaconf fazendo que ambientes fiquem centralizados em um único local podendo alternar rapidamente o gerador de pdf de imagens redimensionadas em lote para os seguintes ambientes : desenvolvimento, testes ou produção.
+
+## Ambiente de desenvolvimento
+
+Ao executar o script com o comando `set ENV_FOR_DYNACONF=development && python processar.py`, o script usará como base a pasta `resize/development`, onde considera que estarão todas imagens para serem processadas e colocadas no pdf. Esta estrutura de pasta não é enviada para o git por padrão. por favor crie a estrutura e salve as imagens de desenvolvimento nas pastas `received/process` para serem processadas conforme detalhes abaixo.
+
+```sh
+
+gerador_pdf_imagens_em_lote/
+│
+├── resize/ 
+    ├── development
+        ├── received/                # Onde ficam as imagens brutas recebidas pelos clientes que não são modificadas.
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf).
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── processed/              # Onde ficam os resultados finais (PDFs e imagens geradas)
+        │   ├── lote0/
+        │   │   ├── lote0.pdf       # PDF final gerado com as imagens do lote
+        │   │   ├── imagem_exemplo.jpg        # Capturas de tela ou imagens intermediárias de verificação
+        │   │   └── imagem_exemplo - Copia.jpg
+        │   └── lote1/
+        │       ├── lote1.pdf
+        │       ├── imagem_exemplo.jpg
+        │       └── imagem_exemplo - Copia.jpg
+
+```
+
+## Ambiente de testes
+
+Ao executar os testes com o comnado `pytest`, o ambiente será alterado automaticamente para testing, ou seja, todas as imagens processadas são salvas na pasta `resize/testing/processed`. Porém ao final do teste elas são removidas pela fixture `criar_lotes_imagens` dexando a pasta limpa novamente.
+
+```sh
+
+gerador_pdf_imagens_em_lote/
+│
+├── resize/ 
+    ├── testing
+        ├── received/                # Onde ficam as imagens brutas recebidas pelos clientes que não são modificadas.
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf).
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── processed/              # Onde ficam os resultados finais (PDFs e imagens geradas)
+        │   ├── lote0/
+        │   │   ├── lote0.pdf       # PDF final gerado com as imagens do lote
+        │   │   ├── imagem_exemplo.jpg        # Capturas de tela ou imagens intermediárias de verificação
+        │   │   └── imagem_exemplo - Copia.jpg
+        │   └── lote1/
+        │       ├── lote1.pdf
+        │       ├── imagem_exemplo.jpg
+        │       └── imagem_exemplo - Copia.jpg
+
+```
+
+## Ambiente de Produção
+
+Ao executar o script com o comando `set ENV_FOR_DYNACONF=production && python processar.py` o script usará como base a pasta `resize/production` onde devem estar na subpasta `process` todas as imagens dos clientes que serão processadas e colocadas no pdf. Esta pasta não é enviada para o git por padrão, por favor crie a estrutura e salve as imagens dos clientes nas pastas `received/process` para serem processadas conforme detalhe abaixo.
+
+```sh
+
+gerador_pdf_imagens_em_lote/
+│
+├── resize/ 
+    ├── production
+        ├── received/                # Onde ficam as imagens brutas recebidas pelos clientes que não são modificadas.
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf) que podem ser organizadas.
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── processed/              # Onde ficam os resultados finais (PDFs e imagens geradas)
+        │   ├── lote0/
+        │   │   ├── lote0.pdf       # PDF final gerado com as imagens do lote
+        │   │   ├── imagem_exemplo.jpg        # Capturas de tela ou imagens intermediárias de verificação
+        │   │   └── imagem_exemplo - Copia.jpg
+        │   └── lote1/
+        │       ├── lote1.pdf
+        │       ├── imagem_exemplo.jpg
+        │       └── imagem_exemplo - Copia.jpg
+
+```
+
 # Principais conceitos aplicados
 
 - Entendimento do problema e desenvolvimento de uma solução simples
@@ -91,8 +216,8 @@ Para execução com logs, execute o seguinte comando :
 - Desenvolvimento baseado em um fluxo simples criado para o RPA, Recebimento das imagens enviadas pelo cliente->Processamento(Redimensionamento e Inserção no Pdf)->Geração de PDFs
 - Implementação de logs
 - Trabalhando com manipulação de arquivos
-- Trabalhando com variaves de ambiente
-- Trabalhando com a classe `os`
+- Trabalhando com variaves de ambiente com gerenciamento por Dynaconf
+- Entendendo a diferença de carregar variaveis de ambientes como a class `os` x `Dynaconf`
 - Bibilotecas
 - - Pillow
 - - ReportLab

@@ -9,6 +9,8 @@ from src.Pdf import Pdf
 from PIL import Image
 import logging
 from reportlab.pdfgen import canvas
+from dynaconf import settings
+import logging
 
 
 @fixture(scope="session")
@@ -36,4 +38,12 @@ def criar_lotes_imagens():
 
     load_dotenv()
 
-    Diretorio.limpar_diretorio(os.getenv('IMAGE_PATH_PROCESSED'))
+    Diretorio.limpar_diretorio(settings.IMAGE_PATH_PROCESSED)
+
+@fixture(scope="session",autouse=True)
+def set_test_settings():
+    
+    settings.configure(FORCE_ENV_FOR_DYNACONF="testing")
+    logging.info("Sendo executado em ambiente de teste.........")
+
+

@@ -1,8 +1,8 @@
 from pathlib import Path
-import os
 from dotenv import load_dotenv
 from PIL import Image
 import logging
+from dynaconf import settings
 
 class MockPdf:
 
@@ -22,7 +22,7 @@ class Pdf:
         load_dotenv()
 
         BASE_DIR = Path(__file__).resolve().parent.parent
-        caminhos_imagens_processadas = BASE_DIR / os.getenv('IMAGE_PATH_PROCESSED')
+        caminhos_imagens_processadas = BASE_DIR / settings.IMAGE_PATH_PROCESSED
         caminhos_imagens_processadas.mkdir(exist_ok=True)
 
         pastas_lotes_imagens = [x for x in caminhos_imagens_processadas.iterdir()]

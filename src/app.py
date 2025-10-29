@@ -5,11 +5,14 @@ from src.Imagem import Imagem
 from PIL import Image as PillowImage
 from reportlab.pdfgen import canvas
 import logging  
+from dynaconf import settings
 
 
 def main():
 
     logging.info("Processando imagens.......")
+    logging.info(f"Ambiente : {settings.current_env}")
+
     folha = Folha(tipo_folha='A4',comprimento=210,largura=297,margem_em_cada_lado=10)
     folha_imagem = FolhaImagem(folha,quantidade_imagens_por_folha=4)
     imagens = Imagem(PillowImage,folha_imagem)

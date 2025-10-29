@@ -1,9 +1,9 @@
 
 from pathlib import Path
 from src.Conversao import Conversao
-import os
 from dotenv import load_dotenv
 import logging
+from dynaconf import settings
 
 class MockImagem:
 
@@ -30,7 +30,7 @@ class Imagem:
 
         BASE_DIR = Path(__file__).resolve().parent.parent
 
-        caminhos_lotes_a_processar = BASE_DIR / os.getenv('IMAGE_PATH_PENDING')
+        caminhos_lotes_a_processar = BASE_DIR / settings.IMAGE_PATH_PENDING
         caminhos_lotes_a_processar.mkdir(exist_ok=True)
         
         paths_lotes = [x for x in caminhos_lotes_a_processar.iterdir()]
@@ -41,7 +41,7 @@ class Imagem:
             path_lote = Path(path_lote)
             paths_images = [x for x in path_lote.iterdir()]
 
-            nova_pasta_lote = BASE_DIR / os.getenv('IMAGE_PATH_PROCESSED') / f"lote{x}"
+            nova_pasta_lote = BASE_DIR / settings.IMAGE_PATH_PROCESSED / f"lote{x}"
             nova_pasta_lote.mkdir(exist_ok=True)
 
             paths_images.sort()

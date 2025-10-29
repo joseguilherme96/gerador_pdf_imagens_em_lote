@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 from pytest import fixture
 import logging
+from dynaconf import settings
 
 
 def get_quantidade_imagens(caminho_pasta):
@@ -28,8 +29,8 @@ def test_a_quantidade_de_imagens_enviadas_pelo_cliente_deve_ser_igual_a_quantida
 
     caplog.set_level(logging.INFO)
 
-    quantidade_imagens_enviadas = get_quantidade_imagens(os.getenv("IMAGE_PATH_RECEIVED"))
-    quantidade_imagens_processo = get_quantidade_imagens(os.getenv("IMAGE_PATH_PENDING"))
+    quantidade_imagens_enviadas = get_quantidade_imagens(settings.IMAGE_PATH_RECEIVED)
+    quantidade_imagens_processo = get_quantidade_imagens(settings.IMAGE_PATH_PENDING)
     
     assert quantidade_imagens_processo == quantidade_imagens_enviadas
 
@@ -39,7 +40,7 @@ def test_a_quantidade_de_imagens_enviadas_pelo_cliente_deve_ser_igual_a_quantida
 
     caplog.set_level(logging.INFO)
 
-    quantidade_imagens_enviadas = get_quantidade_imagens(os.getenv("IMAGE_PATH_RECEIVED"))
-    quantidade_imagens_processadas = get_quantidade_imagens(os.getenv("IMAGE_PATH_PROCESSED"))
+    quantidade_imagens_enviadas = get_quantidade_imagens(settings.IMAGE_PATH_RECEIVED)
+    quantidade_imagens_processadas = get_quantidade_imagens(settings.IMAGE_PATH_PROCESSED)
 
     assert quantidade_imagens_processadas == quantidade_imagens_enviadas

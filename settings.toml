@@ -1,0 +1,17 @@
+[development]  
+DEBUG = true  
+IMAGE_PATH_PROCESSED = "resize/development/processed"
+IMAGE_PATH_PENDING = "resize/development/process"
+IMAGE_PATH_RECEIVED = "resize/development/received" 
+  
+[testing]  
+DEBUG = true  
+IMAGE_PATH_PROCESSED = "resize/testing/processed"
+IMAGE_PATH_PENDING = "resize/testing/process"
+IMAGE_PATH_RECEIVED = "resize/testing/received"  
+  
+[production]  
+DEBUG = false  
+IMAGE_PATH_PROCESSED = "resize/production/processed"
+IMAGE_PATH_PENDING = "resize/production/process"
+IMAGE_PATH_RECEIVED = "resize/production/received" 
