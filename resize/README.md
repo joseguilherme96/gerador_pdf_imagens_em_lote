@@ -12,50 +12,48 @@ Estas pastas `received, process e processed` fazem parte do fluxo do RPA para sa
 
 Ao salvar as imagens em grupo de pastas dentro da pasta `process`, automaticamente o script irá entender que são lotes de imagens para processamento.
 
-## Pasta `processed`
+## Pasta `production/processed`
 
 Armazena todos os lotes de imagens que foram processadas e inseridas no pdf. Cada pasta contém as imagens e o pdf gerado.
 
-Após a execução do RPA na pasta root pelo comando :
-
-```sh
-    python processar.py
-```
-
-Você terá a seguinte estrutura :
+Crie uma pasta chamada `production/process`e salve suas imagens em lote(pastas) dentro da pasta `production/process` confome hierarquia abaixo.
 
 ```sh
 
 gerador_pdf_imagens_em_lote/
-│
-├── resize/                     # Diretório principal responsável pelo fluxo completo do processamento
-│
-│   ├── received/               # Onde as imagens originais são recebidas para iniciar o processo
-│   │   ├── lote0/              # Cada lote representa um grupo de imagens a serem processadas
-│   │   │   ├── imagem_exemplo.png
-│   │   │   └── imagem_exemplo - Copia.png
-│   │   └── lote1/
-│   │       ├── imagem_exemplo.png
-│   │       └── imagem_exemplo - Copia.png
-│   │
-│   ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf)
-│   │   ├── lote0/
-│   │   │   ├── imagem_exemplo.png
-│   │   │   └── imagem_exemplo - Copia.png
-│   │   └── lote1/
-│   │       ├── imagem_exemplo.png
-│   │       └── imagem_exemplo - Copia.png
-│   │
-│   └── processed/              # Onde ficam os resultados finais (PDFs e imagens geradas)
-│       ├── lote0/
-│       │   ├── lote0.pdf       # PDF final gerado com as imagens do lote
-│       │   ├── ss_0.jpg        # Capturas de tela ou imagens intermediárias de verificação
-│       │   └── ss_1.jpg
-│       └── lote1/
-│           ├── lote1.pdf
-│           ├── ss_0.jpg
-│           └── ss_1.jpg
+├── resize/ 
+    ├── production
+        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf)
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf) que podem ser organizadas.
+        │   ├── lote0/
+        │   │   ├── imagem_exemplo.png
+        │   │   └── imagem_exemplo - Copia.png
+        │   └── lote1/
+        │       ├── imagem_exemplo.png
+        │       └── imagem_exemplo - Copia.png
+        ├── processed/              # Onde ficam os resultados finais (PDFs e imagens geradas)
+        │   ├── lote0/
+        │   │   ├── lote0.pdf       # PDF final gerado com as imagens do lote
+        │   │   ├── imagem_exemplo.jpg        # Capturas de tela ou imagens intermediárias de verificação
+        │   │   └── imagem_exemplo - Copia.jpg
+        │   └── lote1/
+        │       ├── lote1.pdf
+        │       ├── imagem_exemplo.jpg
+        │       └── imagem_exemplo - Copia.jpg
 
+```
+
+Execute o RPA na pasta root com o comando :
+
+```sh
+
+    set ENV_FOR_DYNACONF=production && python processar.py
 
 ```
 
