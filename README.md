@@ -34,7 +34,7 @@ gerador_pdf_imagens_em_lote/
 │
 ├── resize/ 
     ├── production
-        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf)
+        ├── received/                # Onde ficam as imagens brutas recebidas pelos clientes que não são modificadas.
         │   ├── lote0/
         │   │   ├── imagem_exemplo.png
         │   │   └── imagem_exemplo - Copia.png
@@ -103,86 +103,26 @@ Os ambientes estão sendo gerenciados por Dynaconf fazendo que ambientes fiquem 
 
 ## Ambiente de desenvolvimento
 
-Ao executar o script com o comando `set ENV_FOR_DYNACONF=development && python processar.py`, o script usará como base a pasta `resize/development`, onde considera que estarão todas imagens para serem processadas e colocadas no pdf. Esta estrutura de pasta não é enviada para o git por padrão. por favor crie a estrutura e salve as imagens de desenvolvimento nas pastas `received/process` para serem processadas conforme detalhes abaixo.
-
-```sh
-
-gerador_pdf_imagens_em_lote/
-│
-├── resize/ 
-    ├── development
-        ├── received/                # Onde ficam as imagens brutas recebidas pelos clientes que não são modificadas.
-        │   ├── lote0/
-        │   │   ├── imagem_exemplo.png
-        │   │   └── imagem_exemplo - Copia.png
-        │   └── lote1/
-        │       ├── imagem_exemplo.png
-        │       └── imagem_exemplo - Copia.png
-        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf).
-        │   ├── lote0/
-        │   │   ├── imagem_exemplo.png
-        │   │   └── imagem_exemplo - Copia.png
-        │   └── lote1/
-        │       ├── imagem_exemplo.png
-        │       └── imagem_exemplo - Copia.png
-        ├── processed/              # Onde ficam os resultados finais (PDFs e imagens geradas)
-        │   ├── lote0/
-        │   │   ├── lote0.pdf       # PDF final gerado com as imagens do lote
-        │   │   ├── imagem_exemplo.jpg        # Capturas de tela ou imagens intermediárias de verificação
-        │   │   └── imagem_exemplo - Copia.jpg
-        │   └── lote1/
-        │       ├── lote1.pdf
-        │       ├── imagem_exemplo.jpg
-        │       └── imagem_exemplo - Copia.jpg
-
-```
+Ao executar o script com o comando `set ENV_FOR_DYNACONF=development && python processar.py`, o script usará como base a pasta `resize/development/processed`, onde considera que estarão todas imagens para serem processadas e colocadas no pdf. Esta estrutura de pasta não é enviada para o git por padrão. por favor crie a estrutura e salve as imagens de desenvolvimento nas pastas `received/process` para serem processadas conforme detalhes abaixo.
 
 ## Ambiente de testes
 
 Ao executar os testes com o comnado `pytest`, o ambiente será alterado automaticamente para testing, ou seja, todas as imagens processadas são salvas na pasta `resize/testing/processed`. Porém ao final do teste elas são removidas pela fixture `criar_lotes_imagens` dexando a pasta limpa novamente.
 
-```sh
-
-gerador_pdf_imagens_em_lote/
-│
-├── resize/ 
-    ├── testing
-        ├── received/                # Onde ficam as imagens brutas recebidas pelos clientes que não são modificadas.
-        │   ├── lote0/
-        │   │   ├── imagem_exemplo.png
-        │   │   └── imagem_exemplo - Copia.png
-        │   └── lote1/
-        │       ├── imagem_exemplo.png
-        │       └── imagem_exemplo - Copia.png
-        ├── process/                # Onde as imagens são guardadas para serem processadas(redimensionamento e inserção no pdf).
-        │   ├── lote0/
-        │   │   ├── imagem_exemplo.png
-        │   │   └── imagem_exemplo - Copia.png
-        │   └── lote1/
-        │       ├── imagem_exemplo.png
-        │       └── imagem_exemplo - Copia.png
-        ├── processed/              # Onde ficam os resultados finais (PDFs e imagens geradas)
-        │   ├── lote0/
-        │   │   ├── lote0.pdf       # PDF final gerado com as imagens do lote
-        │   │   ├── imagem_exemplo.jpg        # Capturas de tela ou imagens intermediárias de verificação
-        │   │   └── imagem_exemplo - Copia.jpg
-        │   └── lote1/
-        │       ├── lote1.pdf
-        │       ├── imagem_exemplo.jpg
-        │       └── imagem_exemplo - Copia.jpg
-
-```
 
 ## Ambiente de Produção
 
-Ao executar o script com o comando `set ENV_FOR_DYNACONF=production && python processar.py` o script usará como base a pasta `resize/production` onde devem estar na subpasta `process` todas as imagens dos clientes que serão processadas e colocadas no pdf. Esta pasta não é enviada para o git por padrão, por favor crie a estrutura e salve as imagens dos clientes nas pastas `received/process` para serem processadas conforme detalhe abaixo.
+Ao executar o script com o comando `set ENV_FOR_DYNACONF=production && python processar.py` o script usará como base a pasta `resize/production/processed` onde devem estar na subpasta `process` todas as imagens dos clientes que serão processadas e colocadas no pdf. Esta pasta não é enviada para o git por padrão, por favor crie a estrutura e salve as imagens dos clientes nas pastas `received/process` para serem processadas conforme detalhe abaixo.
+
+## Modelo de pastas
+O modelo de pastas será sempre o mesmo independente do ambiente que está sendo executado. Crie o mesmo modelo para todos os ambientes alterando apenas o nome de uma pasta conforme detalhe abaixo.
 
 ```sh
 
 gerador_pdf_imagens_em_lote/
 │
 ├── resize/ 
-    ├── production
+    ├── production                   # Detalhe : O nome da pasta aqui pode varia dependendo do ambiente que está sendo executado (production,testing ou development)
         ├── received/                # Onde ficam as imagens brutas recebidas pelos clientes que não são modificadas.
         │   ├── lote0/
         │   │   ├── imagem_exemplo.png

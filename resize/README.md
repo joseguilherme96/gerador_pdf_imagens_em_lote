@@ -16,7 +16,7 @@ Ao salvar as imagens em grupo de pastas dentro da pasta `process`, automaticamen
 
 Armazena todos os lotes de imagens que foram processadas e inseridas no pdf. Cada pasta contém as imagens e o pdf gerado.
 
-Crie uma pasta chamada `production/process`e salve suas imagens em lote(pastas) dentro da pasta `production/process` confome hierarquia abaixo.
+crie a estrutura abaixo e salve suas imagens em lote(pastas) dentro da pasta `production/process` confome hierarquia abaixo.
 
 ```sh
 
