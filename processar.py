@@ -1,11 +1,9 @@
 from src import app
+from src.logging_config import setup_logging
 import logging
+from dynaconf import settings
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
+setup_logging()
 app.main()
 
     

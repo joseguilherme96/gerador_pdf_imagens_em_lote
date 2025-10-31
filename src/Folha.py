@@ -1,3 +1,5 @@
+import logging
+
 class Folha:
 
     def __init__(self,tipo_folha: str,comprimento:int,largura:int,margem_em_cada_lado:int):
@@ -9,6 +11,12 @@ class Folha:
         self.area_livre = None
         self.comprimento_livre = None
         self.largura_livre = None
+
+        logging.debug(Folha)
+        logging.debug(f"Tipo Folha : {self.tipo_folha}")
+        logging.debug(f"Tipo Comprimento : {self.comprimento}")
+        logging.debug(f"Tipo Largura : {self.largura}")
+        logging.debug(f"Tipo Margem de cada lado : {self.margem_em_cada_lado}")
 
     def calcular_area_livre(self):
 

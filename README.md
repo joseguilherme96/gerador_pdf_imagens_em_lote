@@ -103,16 +103,16 @@ Os ambientes estão sendo gerenciados por Dynaconf fazendo que ambientes fiquem 
 
 ## Ambiente de desenvolvimento
 
-Ao executar o script com o comando `set ENV_FOR_DYNACONF=development && python processar.py`, o script usará como base a pasta `resize/development/processed`, onde considera que estarão todas imagens para serem processadas e colocadas no pdf. Esta estrutura de pasta não é enviada para o git por padrão. por favor crie a estrutura e salve as imagens de desenvolvimento nas pastas `received/process` para serem processadas conforme detalhes abaixo.
+Ao executar o script com o comando `set ENV_FOR_DYNACONF=development && python processar.py`, o script usará como base a pasta `resize/development`, onde considera que todas imagens a serem processadas estarão na pasta `resize/development/process` para serem colocadas no pdf. Esta estrutura de pasta não é enviada para o git por padrão. por favor crie a estrutura e salve as imagens de desenvolvimento nas pastas `received/process` para serem processadas conforme modelo abaixo.
 
 ## Ambiente de testes
 
-Ao executar os testes com o comnado `pytest`, o ambiente será alterado automaticamente para testing, ou seja, todas as imagens processadas são salvas na pasta `resize/testing/processed`. Porém ao final do teste elas são removidas pela fixture `criar_lotes_imagens` dexando a pasta limpa novamente.
+Ao executar os testes com o comando `pytest`, o ambiente será alterado automaticamente para testing, ou seja, todas as imagens processadas são salvas na pasta `resize/testing/processed`. Porém ao final do teste elas são removidas pela fixture `criar_lotes_imagens` dexando a pasta limpa novamente.
 
 
 ## Ambiente de Produção
 
-Ao executar o script com o comando `set ENV_FOR_DYNACONF=production && python processar.py` o script usará como base a pasta `resize/production/processed` onde devem estar na subpasta `process` todas as imagens dos clientes que serão processadas e colocadas no pdf. Esta pasta não é enviada para o git por padrão, por favor crie a estrutura e salve as imagens dos clientes nas pastas `received/process` para serem processadas conforme detalhe abaixo.
+Ao executar o script com o comando `set ENV_FOR_DYNACONF=production && python processar.py` o script usará como base a pasta `resize/production` onde devem estar na subpasta `process` todas as imagens dos clientes que serão processadas e colocadas no pdf. Esta pasta não é enviada para o git por padrão, por favor crie a estrutura e salve as imagens dos clientes nas pastas `received/process` para serem processadas conforme modelo abaixo.
 
 ## Modelo de pastas
 O modelo de pastas será sempre o mesmo independente do ambiente que está sendo executado. Crie o mesmo modelo para todos os ambientes alterando apenas o nome de uma pasta conforme detalhe abaixo.
@@ -148,6 +148,12 @@ gerador_pdf_imagens_em_lote/
         │       └── imagem_exemplo - Copia.jpg
 
 ```
+
+# Modo Debug
+
+Ao executar os script `processar.py` nos ambientes de `testing ou development`, o modo debugging é ativado automaticamente devido a configuração feita no arquivo `settings.toml`, onde os ambientes `[development] e [testing]` já estão setados `DEBUG = true`. Assim você terá uma visão mais ampla do processamento do arquivo.
+
+[![Modo debug](assets/processamento_em_modo_debug.png "Modo debug")](assets/processamento_em_modo_debug.png)
 
 # Principais conceitos aplicados
 
