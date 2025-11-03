@@ -41,7 +41,7 @@ class Imagem:
             path_lote = Path(path_lote)
             paths_images = [x for x in path_lote.iterdir()]
 
-            nova_pasta_lote = BASE_DIR / settings.IMAGE_PATH_PROCESSED / f"lote{x}"
+            nova_pasta_lote = BASE_DIR / settings.IMAGE_PATH_PROCESSED / f"{path_lote.name}"
             nova_pasta_lote.mkdir(exist_ok=True)
 
             paths_images.sort()

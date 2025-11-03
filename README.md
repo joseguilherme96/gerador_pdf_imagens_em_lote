@@ -196,13 +196,15 @@ Ao executar os script `processar.py` nos ambientes de `testing ou development`, 
 - Entendimento do problema e desenvolvimento de uma solução simples
 - Desenvolvimento baseado em TDD(Test-Driven Development)
 - Desenvolvimento baseado em um fluxo simples criado para o RPA, Recebimento das imagens enviadas pelo cliente->Processamento(Redimensionamento e Inserção no Pdf)->Geração de PDFs
-- Implementação de logs
+- Implementação de logs com a classe `logging`.
 - Trabalhando com manipulação de arquivos
 - Trabalhando com variaves de ambiente com gerenciamento por Dynaconf
 - Entendendo a diferença de carregar variaveis de ambientes como a class `os` x `Dynaconf`
 - Bibilotecas
 - - Pillow
 - - ReportLab
+- - Dynaconf
+- - Pytest
 - Trabalhando com injeção de dependência
 - Testes automatizados com Pytest
 - - Testes com simulação(mocks)
@@ -210,7 +212,12 @@ Ao executar os script `processar.py` nos ambientes de `testing ou development`, 
 - - Testes de Integração
 - Criação do arquivo de entrada processar.py para execução do RPA.
 - Trabalhando com a classe `argparse` para criar opções customizadas ao executar o RPA.
-- Criando opções customizadas para o pytest com a fixture `parser`
+- Trabalhando com a criação de opções customizadas para o pytest com a fixture `parser`
+- - Opção de executar testes com processamento de 2, 4 ou 6 imagens por folha com a flag `--qtd-imagens-por-folha`
+- - Opção de executar testes com ajuste de imagens no comprimento com a flag `--ajuste-width`
+- - Opção de executar testes com ajuste de imagens na altura com a flag `--ajuste-height`
+- - Opção de executar testes com ou sem teardown com a flag `--teardown` para visualização antes da exclusão do pdf gerado.
+- Entendo sobre arquivos de configuração `pytest.ini` do pytest
 
 
 
