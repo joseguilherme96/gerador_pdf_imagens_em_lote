@@ -50,63 +50,11 @@ class Pdf:
             end = len(paths_images) + 1
             passo = self.folha_imagem.quantidade_imagens_por_folha
 
-            for x in range(start,end,passo):
+            for page in range(start,end,passo):
 
-                if x < len(paths_images):
-
-                    logging.info("Inserindo imagem no pdf.........")
-                    c.drawImage(
-                        paths_images[x],    
-                        x=0,
-                        y=500,
-                        width=400, 
-                        height=300, 
-                        preserveAspectRatio=True
-                    )
-
-                    logging.info(paths_images[x])
-
-                if x + 1 < len(paths_images):
-
-                    logging.info("Inserindo imagem no pdf.........")
-                    c.drawImage(
-                        paths_images[x + 1],    
-                        x=250,
-                        y=500,
-                        width=400, 
-                        height=300, 
-                        preserveAspectRatio=True
-                    )
-
-                    logging.info(paths_images[x + 1])
-
-                if x + 2 < len(paths_images):
-
-                    logging.info("Inserindo imagem no pdf.........")
-                    c.drawImage(
-                        paths_images[x + 2],    
-                        x=0,
-                        y=150,
-                        width=400, 
-                        height=300, 
-                        preserveAspectRatio=True
-                    )
-
-                    logging.info(paths_images[x + 2])
-
-                if x + 3 < len(paths_images):
-
-                    logging.info("Inserindo imagem no pdf.........")
-                    c.drawImage(
-                        paths_images[x + 3],    
-                        x=250,
-                        y=150,
-                        width=400, 
-                        height=300, 
-                        preserveAspectRatio=True
-                    )
-
-                    logging.info(paths_images[x + 3])
+                path_images_to_current_page = paths_images[page:page+passo]
+                coordinates = self.folha_imagem.get_coordenadas_imagens()
+                self.folha_imagem.desenhar_imagens_na_folha(c,path_images_to_current_page,coordinates)
 
                 c.showPage()
 

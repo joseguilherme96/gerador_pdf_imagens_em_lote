@@ -22,7 +22,7 @@ class Imagem:
 
         return True
 
-    def redimensionar_imagem(self):
+    def redimensionar_imagem(self,ajuste_width=1.0,ajuste_height=1.0):
 
         logging.info("Inicio de redimensionando de imagens .........")
 
@@ -49,7 +49,11 @@ class Imagem:
             for (x,path_image) in enumerate(paths_images):
 
                 imagem = self.imagem.open(str(path_image))
-                nova_imagem = imagem.resize((Conversao.convert_mm_to_pixel(int(self.folha_imagem.comprimento_maximo_imagem_na_folha)), Conversao.convert_mm_to_pixel(int(self.folha_imagem.largura_maxima_imagem_na_folha))))
+                
+                width = Conversao.convert_mm_to_pixel(int(self.folha_imagem.comprimento_maximo_imagem_na_folha)) * float(ajuste_width)
+                height = Conversao.convert_mm_to_pixel(int(self.folha_imagem.largura_maxima_imagem_na_folha)) * float(ajuste_height)
+
+                nova_imagem = imagem.resize((int(width),int(height)))
                 
                 novo_caminho_imagem = nova_pasta_lote / f"{path_image.name}"
                 nova_imagem.save(novo_caminho_imagem)

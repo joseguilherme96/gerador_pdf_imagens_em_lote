@@ -6,7 +6,7 @@ from PIL import Image as PillowImage
 from reportlab.pdfgen import canvas
 import logging  
 from dynaconf import settings
-
+from src.main_opcoes import flags 
 
 def main():
 
@@ -16,7 +16,11 @@ def main():
 
     logging.debug(f"Folha criada: {folha}")
 
-    folha_imagem = FolhaImagem(folha,quantidade_imagens_por_folha=4)
+    quantidade_imagens_por_folha = flags[0]['value'] if flags[0]['value'] else 4
+    ajuste_width = flags[1]['value'] if flags[1]['value'] else 1.0
+    ajuste_height = flags[1]['value'] if flags[2]['value'] else 1.0
+
+    folha_imagem = FolhaImagem(folha,quantidade_imagens_por_folha=int(quantidade_imagens_por_folha))
     logging.debug(f"FolhaImagem configurada: {folha_imagem}")
 
     comprimento_largura_maxima_imagem = folha_imagem.calcular_comprimento_largura_maxima_imagem()
@@ -25,7 +29,8 @@ def main():
     imagens = Imagem(PillowImage,folha_imagem)
     logging.debug(f"Classe PillowImage inicializada: {imagens}")
 
-    imagens = imagens.redimensionar_imagem()
+    imagens = imagens.redimensionar_imagem(ajuste_width,ajuste_height)
+
     logging.debug(f"Imagens redimensionadas: {imagens}")
 
     pdf = Pdf(canvas,folha_imagem)

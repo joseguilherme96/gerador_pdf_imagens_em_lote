@@ -4,7 +4,8 @@ Está automação precisou ser desenvolvida para atender a necessidade de um cli
 ## Funcionalidades
 - O script redimensiona as imagens antes da inserção em folha `A4`
 - O script gera automaticamente pdfs por lotes de imagens adicionadas na pasta `process`
-- O script insere 4 imagens por folha
+- O script insere 4 imagens por folha na execução padrão, podendo alternar para 2 ou até 6 imagens por folha com opções personalizadas.
+- Permite ajuste pelo terminal de opções das dimensões geradas das imagens
 
 # Testes
 
@@ -60,7 +61,7 @@ gerador_pdf_imagens_em_lote/
 
 ```
 
-Na raiz do projeto execute :
+Para executar o RPA em modo produção execute o seguinte comando :
 
 ```sh
 
@@ -74,6 +75,41 @@ O script começará a processar as imagens fazendo o redimensionamento e inserç
 
 # PDF Gerado
 [![PDF Gerado](assets/folha_a4_com_imagens.png "PDF Gerado")](assets/folha_a4_com_imagens.png)
+
+# Execução do RPA com parâmetros
+
+Por padrão é gerado 4 imagens por folha. Mas você pode personalizar as quantidade de imagens por folha, sendo 2, 4 ou até 6 imagens e
+também pode ser ajustado as dimensões geradas das imagens na folha com comandos personalizados.
+
+Utilize a ajuda para ver mais detalhes.
+
+```sh
+
+    python processar.py --help
+
+```
+[![Ajuda terminal](assets/ajuda.png "Processamento RPA")](assets/ajuda.png)
+
+## Personalizando duas imagens por folha
+
+```sh
+
+    set ENV_FOR_DYNACONF=production && python processar.py --qtd-imagens-por-folha="2" --ajuste-witdh=0.5
+
+```
+
+[![Gerando duas imagens por folha](assets/duas_imagens_por_pagina.png "Gerando duas imagens por folha")](assets/duas_imagens_por_pagina.png)
+
+## Personalizando seis imagens por folha
+
+```sh
+
+    set ENV_FOR_DYNACONF=production && python processar.py --qtd-imagens-por-folha=6 --ajuste-width=0.6
+
+```
+
+[![Gerando seis imagens por folha](assets/6_imagens_por_pagina.png "Gerando seis imagens por folha")](assets/6_imagens_por_pagina.png)
+
 
 # Testes automatizados
 
@@ -173,6 +209,8 @@ Ao executar os script `processar.py` nos ambientes de `testing ou development`, 
 - - Teste unitários
 - - Testes de Integração
 - Criação do arquivo de entrada processar.py para execução do RPA.
+- Trabalhando com a classe `argparse` para criar opções customizadas ao executar o RPA.
+- Criando opções customizadas para o pytest com a fixture `parser`
 
 
 
