@@ -6,3 +6,4 @@ resize/development/**
 # Ignore dynaconf secret files
 .secrets.*
 logs
+build

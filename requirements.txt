@@ -1,6 +1,7 @@
 charset-normalizer==3.4.4
 colorama==0.4.6
 dynaconf==3.2.12
+gerador_pdf_imagens_em_lote @ file:///C:/xampp/htdocs/gerador_pdf_imagens_em_lote
 iniconfig==2.3.0
 packaging==25.0
 pillow==12.0.0

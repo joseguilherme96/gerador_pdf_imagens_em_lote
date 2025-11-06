@@ -1,0 +1,19 @@
+[project]
+name = "gerador_pdf_imagens_em_lote"
+version = "0.0.1"
+authors = [
+  { name="José Guilherme", email="jose.guilherme96@outlook.com.br" },
+]
+description = "RPA que redimensiona imagens em lote, insere em folha A4 e gera pdf para impressão."
+readme = "README.md"
+requires-python = ">=3.13.3"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Windows",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/joseguilherme96/gerador_pdf_imagens_em_lote"
+Issues = "https://github.com/joseguilherme96/gerador_pdf_imagens_em_lote/issues"
